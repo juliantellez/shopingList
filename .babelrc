@@ -1,0 +1,20 @@
+{
+  "presets": ["react", "es2015", "stage-0"],
+  "plugins": [
+    "transform-decorators-legacy",
+    "add-module-exports",
+    [
+      "module-resolver", {
+      "root": ["./"],
+      "alias": {
+        "src": "./app/scripts/"
+        }
+      }
+    ]
+  ],
+  "env": {
+   "development": {
+     "plugins": ["react-hot-loader/babel"]
+   }
+  }
+}
