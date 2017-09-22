@@ -16,13 +16,23 @@ self.addEventListener('install', event => {
   }())
 })
 
+const cacheRequest = url => (
+  async function () {
+    const response = await fetch(url)
+    if (!response.ok) {
+      return null
+    }
+    const cache = await caches.open(CACHE_NAME)
+    cache.put(url, response.clone())
+  }())
+
 self.addEventListener('fetch', event => {
   if (!shouldCache) {
     return
   }
   event.respondWith(async function () {
     const cachesMatch = await caches.match(event.request)
-    return cachesMatch || fetch(event.request)
+    return cachesMatch || cacheRequest(event.request)
   }())
 })
 

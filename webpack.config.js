@@ -37,7 +37,7 @@ const webpackConfig = {
             options: {
               modules: true,
               importLoaders: 1,
-              localIdentName: '[name]-[local]',
+              localIdentName: '[name]-[local]-[hash:base64:5]',
               camelCase: true,
               url: true,
             },
